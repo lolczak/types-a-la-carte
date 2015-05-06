@@ -1,10 +1,23 @@
 package org.lolczak
 
+import shapeless.{Inl, Inr, :+:}
+
 import scala.languageFeature.higherKinds
 
-trait Expr[F[_]]
+object expr {
 
-case class Val[T](value: T) extends Expr[Val]
+  case class In[+F](in: F)
 
-case class Add[T](val1:T, val2: T) extends Expr[Add]
+  type Expr[+A] = In[A]
+
+  case class Val[T](value: T)
+  case class Add[T](val1:T, val2: T)
+
+  type AddExample = Expr[Val[_] :+: Add[_]]
+
+  val addExample: AddExample = In(Inr(
+    Add(In(Inl(Val(118))), In(Inl(Val(1219))))
+  ))
+
+}
 
