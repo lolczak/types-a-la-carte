@@ -2,8 +2,8 @@ package org.lolczak
 
 import scala.languageFeature.{existentials, higherKinds}
 
-sealed trait :+:[+F, +G]
+sealed trait :+:[+F[_], +G[_]]
 
-case class Inl[+F, +G](head: F) extends :+:[F, G]
+case class Inl[+F[_], +G[_]](head: F[_]) extends :+:[F, G]
 
-case class Inr[+F, +G](tail: G) extends :+:[F, G]
+case class Inr[+F[_], +G[_]](tail: G[_]) extends :+:[F, G]

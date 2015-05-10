@@ -11,7 +11,7 @@ object expr {
   case class Val[T](value: T)
   case class Add[T](val1:T, val2: T)
 
-  type AddExample = Expr[Val[_] :+: Add[_]]
+  type AddExample = Expr[Val :+: Add]
 
   val addExample: AddExample = In(Inr(
     Add(In(Inl(Val(118))), In(Inl(Val(1219))))
