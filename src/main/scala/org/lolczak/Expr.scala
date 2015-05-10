@@ -1,7 +1,5 @@
 package org.lolczak
 
-import shapeless.{Inl, Inr, :+:}
-
 import scala.languageFeature.higherKinds
 
 object expr {
