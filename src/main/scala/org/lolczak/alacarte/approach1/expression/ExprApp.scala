@@ -3,6 +3,7 @@ package org.lolczak.alacarte.approach1.expression
 import org.lolczak.alacarte.approach1.control.:+:
 import Expr._
 import :+:._
+//todo get rid of this import
 
 object ExprApp extends App {
 
