@@ -16,6 +16,10 @@ object Val {
     override def evalAlgebra(expr: Val[Int])(implicit fun: Functor[Val]): Int = expr.value
   }
 
-   def toVal[F[_]](x: Int)(implicit ev: Val :<: F): Expr[F] = Expr.inject(Val[Expr[F]](x))
+   def valOf[F[_]](x: Int)(implicit ev: Val :<: F): Expr[F] = Expr.inject(Val[Expr[F]](x))
+
+//  implicit def asVal(x: Int) = new {
+//    def asVal[F[_]](implicit ev: Val :<: F) = toVal[F](x)
+//  }
 
 }

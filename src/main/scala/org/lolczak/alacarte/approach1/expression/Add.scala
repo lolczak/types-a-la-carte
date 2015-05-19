@@ -19,4 +19,8 @@ object Add {
 
   def sum[F[_]](x: Expr[F], y: Expr[F])(implicit ev: Add :<: F): Expr[F] = Expr.inject(Add(x,y))
 
+  implicit class AddOps[F[_]](x: Expr[F])(implicit ev: Add :<: F) {
+    def +(y: Expr[F]) = sum[F](x,y)
+  }
+
 }
