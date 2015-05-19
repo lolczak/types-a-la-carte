@@ -1,5 +1,7 @@
 package org.lolczak.alacarte.approach1.expression
 
+import org.lolczak.alacarte.approach1.control.:<:
+
 import scala.languageFeature.{existentials, higherKinds}
 import scalaz.Functor
 
@@ -13,5 +15,7 @@ object Expr {
   }
 
   def eval[F[_]](expr: Expr[F])(implicit eval: Eval[F], fun:Functor[F]): Int = foldExpr(eval.evalAlgebra)(expr)
+
+  def inject[F[_], G[_]](g: G[Expr[F]])(implicit ev: G :<: F): Expr[F] = Expr[F](ev.inj(g))
 
 }
