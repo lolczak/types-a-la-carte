@@ -18,8 +18,10 @@ object ExprApp extends App {
 
   println("Add example: " + eval[(Val :+: Add)#Plus](addExample))
 
-  val dslExample: Expr[(Val :+: Add)#Plus] = sum[(Val :+: Add)#Plus](sum[(Val :+: Add)#Plus](toVal[(Val :+: Add)#Plus](30000), toVal[(Val :+: Add)#Plus](1330)), toVal[(Val :+: Add)#Plus](7))
+  type T[A] = (Val :+: Add)#Plus[A]
 
-  println("Dsl example: " + eval[(Val :+: Add)#Plus](dslExample))
+  val dslExample: Expr[T] = sum[T](sum[T](toVal[T](30000), toVal[T](1330)), toVal[T](7))
+
+  println("Dsl example: " + eval[T](dslExample))
 
 }
