@@ -10,15 +10,13 @@ import InjectInstances._
 
 object ExprApp extends App {
 
-  type AddExample = Expr[(Val :+: Add)#Plus]
+  type T[A] = (Val :+: Add)#Plus[A]
 
-  val addExample= Expr[(Val :+: Add)#Plus](Right(
-    Add(Expr[(Val :+: Add)#Plus](Left(Val(118))), Expr[(Val :+: Add)#Plus](Left(Val(1219))))
+  val addExample= Expr[T](Right(
+    Add(Expr[T](Left(Val(118))), Expr[T](Left(Val(1219))))
   ))
 
   println("Add example: " + eval[(Val :+: Add)#Plus](addExample))
-
-  type T[A] = (Val :+: Add)#Plus[A]
 
   val dsl1: Expr[T] = sum[T](sum[T](valOf[T](30000), valOf[T](1330)), valOf[T](7))
 
