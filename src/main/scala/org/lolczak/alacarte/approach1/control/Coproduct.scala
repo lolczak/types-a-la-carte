@@ -31,6 +31,14 @@ object CoproductInstances {
     }
   }
 
+  //hack
+  implicit def coprodNestedEval[F[_], G[_], H[_]](implicit F0: Functor[F], G0: Functor[Coproduct[G, H, ?]]) = new Functor[Coproduct[F, Coproduct[G, H, ?], ?]] {
+    override def map[A, B](fa: Coproduct[F, Coproduct[G, H, ?], A])(f: (A) => B): Coproduct[F, Coproduct[G, H, ?], B] = fa match {
+      case left : Inl[F, Coproduct[G, H, ?], A] => Inl[F, Coproduct[G, H, ?], B](F0.map(left.f)(f))
+      case right: Inr[F, Coproduct[G, H, ?], A] => Inr[F, Coproduct[G, H, ?], B](G0.map(right.g)(f))
+    }
+  }
+
 }
 
 

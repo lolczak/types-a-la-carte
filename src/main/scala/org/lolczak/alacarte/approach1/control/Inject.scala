@@ -1,5 +1,7 @@
 package org.lolczak.alacarte.approach1.control
 
+import org.lolczak.alacarte.approach1.control.Coproduct
+
 
 trait Inject[F[_], G[_]] {
 
@@ -26,6 +28,8 @@ object InjectInstances {
     override def inj[A](f: F[A]) = Inl[F, Coproduct[G, H, ?], A](f)
   }
 
-//  implicit def rightNested[F[_], G[_], H[_], I[_]]: :<:[F, ({type C[A] = Coproduct[G, ({type N[x] = Coproduct[H,I, x]})#N, A]})#C] = ???
+  implicit def rightNested[F[_], G[_], H[_], I[_]](implicit ev: F :<: Coproduct[H,I, ?]) = new (F :<: Coproduct[G, Coproduct[H,I, ?], ?]) {
+    override def inj[A](f: F[A]) = Inr[G, Coproduct[H,I, ?], A](ev.inj(f))
+  }
 
 }
