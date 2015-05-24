@@ -2,7 +2,7 @@ package org.lolczak.alacarte.approach1.expression
 
 trait Render[F[_]] {
 
-  def render[G[_]](expr: F[Expr[G]]): String
+  def render[G[_]](expr: F[Expr[G]])(implicit G0: Render[G]): String
 
 }
 

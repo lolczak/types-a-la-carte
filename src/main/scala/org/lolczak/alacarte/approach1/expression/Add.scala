@@ -1,6 +1,7 @@
 package org.lolczak.alacarte.approach1.expression
 
 import org.lolczak.alacarte.approach1.control.:<:
+import org.lolczak.alacarte.approach1.expression.Render
 
 import scalaz.Functor
 
@@ -20,6 +21,11 @@ object Add {
 
   implicit class AddOps[F[_]](x: Expr[F])(implicit ev: Add :<: F) {
     def |+|(y: Expr[F]) = sum[F](x,y)
+  }
+
+  implicit val addRender = new Render[Add] {
+    override def render[G[_]](expr: Add[Expr[G]])(implicit G0: Render[G]): String =
+      "(" + Render.pretty(expr.x) + " + " + Render.pretty(expr.y) + ")"
   }
 
 }

@@ -7,6 +7,7 @@ import org.lolczak.alacarte.approach1.expression.Add._
 import org.lolczak.alacarte.approach1.expression.Expr._
 import org.lolczak.alacarte.approach1.expression.Mul._
 import org.lolczak.alacarte.approach1.expression.Val._
+import Render._
 
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 
@@ -32,7 +33,7 @@ object ExprApp extends App {
 
 
   val addExample1: Expr[T] = sum[T](sum[T](valOf[T](30000), valOf[T](1330)), valOf[T](7))
-  println("Add example: " + eval[T](addExample1))
+  println("Add example: " + pretty(addExample1) + " = "+ eval[T](addExample1))
 
   val addExample2: Expr[T] = valOf[T](30000) |+| valOf[T](1330) |+| valOf[T](7)
   println("Add example (with ops): " + eval[T](addExample2))

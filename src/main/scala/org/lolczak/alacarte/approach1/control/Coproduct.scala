@@ -1,5 +1,7 @@
 package org.lolczak.alacarte.approach1.control
 
+import org.lolczak.alacarte.approach1.expression.{Expr, Render}
+
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 import scalaz.Functor
 
@@ -36,6 +38,14 @@ object CoproductInstances {
     override def map[A, B](fa: Coproduct[F, Coproduct[G, H, ?], A])(f: (A) => B): Coproduct[F, Coproduct[G, H, ?], B] = fa match {
       case left : Inl[F, Coproduct[G, H, ?], A] => Inl[F, Coproduct[G, H, ?], B](F0.map(left.f)(f))
       case right: Inr[F, Coproduct[G, H, ?], A] => Inr[F, Coproduct[G, H, ?], B](G0.map(right.g)(f))
+    }
+  }
+
+  //
+  implicit def coRender[F[_], H[_]](implicit F0: Render[F], H0: Render[H]) = new Render[Coproduct[F, H, ?]] {
+    override def render[G[_]](expr: Coproduct[F, H, Expr[G]])(implicit G0: Render[G]): String = expr match {
+      case Inl(x) => F0.render(x)
+      case Inr(y) => H0.render(y)
     }
   }
 

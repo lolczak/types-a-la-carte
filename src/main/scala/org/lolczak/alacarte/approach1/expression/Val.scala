@@ -18,8 +18,8 @@ object Val {
 
    def valOf[F[_]](x: Int)(implicit ev: Val :<: F): Expr[F] = Expr.inject(Val[Expr[F]](x))
 
-//  implicit def asVal(x: Int) = new {
-//    def asVal[F[_]](implicit ev: Val :<: F) = toVal[F](x)
-//  }
+  implicit val valRender = new Render[Val] {
+    override def render[G[_]](expr: Val[Expr[G]])(implicit G0: Render[G]): String = expr.value.toString
+  }
 
 }
