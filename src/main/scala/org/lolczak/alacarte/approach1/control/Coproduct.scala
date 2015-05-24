@@ -1,6 +1,6 @@
 package org.lolczak.alacarte.approach1.control
 
-import scala.languageFeature.{existentials, higherKinds}
+import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 import scalaz.Functor
 
 sealed trait PlusSyntax {
