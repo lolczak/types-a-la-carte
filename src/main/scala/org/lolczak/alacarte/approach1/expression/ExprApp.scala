@@ -33,10 +33,10 @@ object ExprApp extends App {
 
 
   val addExample1: Expr[T] = sum[T](sum[T](valOf[T](30000), valOf[T](1330)), valOf[T](7))
-  println("Add example: " + pretty(addExample1) + " = "+ eval[T](addExample1))
+  println("Add example: " + pretty(addExample1) + " = " + eval(addExample1))
 
   val addExample2: Expr[T] = valOf[T](30000) |+| valOf[T](1330) |+| valOf[T](7)
-  println("Add example (with ops): " + eval[T](addExample2))
+  println("Add example (with ops): " + pretty(addExample2) + " = " + eval(addExample2))
 
   val test = valOf[U](23)
 
