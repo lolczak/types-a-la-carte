@@ -13,7 +13,7 @@ object InjectInstances {
     override def inj[A](f: F[A]): F[A] = f
   }
 
-  implicit def leftExplicitlySupportingInject[F[_], G[_]]: :<:[F, Coproduct[F, G, ?]] = new (F :<: Coproduct[F, G, ?]) {
+  implicit def leftExplicitlySupportingInject[F[_], G[_]] = new (F :<: Coproduct[F, G, ?]) {
     override def inj[A](f: F[A]): Coproduct[F, G, A] = Inl[F, G, A](f)
   }
 
@@ -22,8 +22,8 @@ object InjectInstances {
   }
 
   //hacks
-  implicit def leftExplicitNested[F[_], G[_], H[_]]: :<:[F, ({type C[A] = Coproduct[F, ({type N[x] = Coproduct[G,H, x]})#N, A]})#C] = new :<:[F, ({type C[A] = Coproduct[F, ({type N[x] = Coproduct[G,H, x]})#N, A]})#C] {
-    override def inj[A](f: F[A]): Coproduct[F, ({type N[x] = Coproduct[G, H, x]})#N, A] = Inl[F,({type N[x] = Coproduct[G, H, x]})#N,A](f)
+  implicit def leftExplicitNested[F[_], G[_], H[_]] = new (F :<: Coproduct[F, Coproduct[G,H, ?], ?]) {
+    override def inj[A](f: F[A]) = Inl[F, Coproduct[G, H, ?], A](f)
   }
 
 //  implicit def rightNested[F[_], G[_], H[_], I[_]]: :<:[F, ({type C[A] = Coproduct[G, ({type N[x] = Coproduct[H,I, x]})#N, A]})#C] = ???
