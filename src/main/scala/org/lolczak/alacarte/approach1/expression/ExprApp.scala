@@ -40,9 +40,11 @@ object ExprApp extends App {
   val test = valOf[U](23)
 
   val mulExample1 = sum[U](mul[U](valOf[U](80), valOf[U](5)), valOf[U](4))
-//    val mulExample = valOf[U](80) * valOf[U](5) + valOf[U](4)
-//
+
   println("Mul example: " + eval[U](mulExample1))
-//
+
+  val mulExample2 = valOf[U](80) |*| valOf[U](5) |+| valOf[U](4)
+
+  println("Mul example (with ops): " + eval[U](mulExample2))
 
 }
