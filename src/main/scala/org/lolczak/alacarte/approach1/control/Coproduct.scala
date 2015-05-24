@@ -5,20 +5,6 @@ import org.lolczak.alacarte.approach1.expression.{Expr, Render}
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 import scalaz.Functor
 
-sealed trait PlusSyntax {
-  type Plus[A]
-}
-
-sealed trait :+:[H[_], T <: PlusSyntax] extends PlusSyntax {
-  type Plus[A] = Coproduct[H, T#Plus, A]
-}
-
-sealed trait CNil extends PlusSyntax {
-  type Plus[A] = CNone[A]
-}
-
-class CNone[A]
-
 sealed trait Coproduct[F[_], G[_], A]
 case class Inl[F[_], G[_], A](f: F[A]) extends Coproduct[F, G, A]
 case class Inr[F[_], G[_], A](g: G[A]) extends Coproduct[F, G, A]
