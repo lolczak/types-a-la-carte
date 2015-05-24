@@ -13,11 +13,11 @@ object InjectInstances {
     override def inj[A](f: F[A]): F[A] = f
   }
 
-  implicit def leftExplicitlySupportingInject[F[_], G[_]]: :<:[F, ({type C[A] = Coproduct[F, G, A]})#C] = new (F :<: ({type C[A] = Coproduct[F, G, A]})#C) {
+  implicit def leftExplicitlySupportingInject[F[_], G[_]]: :<:[F, Coproduct[F, G, ?]] = new (F :<: Coproduct[F, G, ?]) {
     override def inj[A](f: F[A]): Coproduct[F, G, A] = Inl[F, G, A](f)
   }
 
-  implicit def rightImplicitlySupportingInject[F[_], G[_], H[_]](implicit ev: F :<: G) = new (F :<: ({type C[A] = Coproduct[H, G, A]})#C) {
+  implicit def rightImplicitlySupportingInject[F[_], G[_], H[_]](implicit ev: F :<: G) = new (F :<: Coproduct[H, G, ?]) {
     override def inj[A](f: F[A]): Coproduct[H, G, A] = Inr[H, G, A](ev.inj(f))
   }
 

@@ -27,7 +27,8 @@ object ExprApp extends App {
   //
   //  val x = valOf[(Val :+: (Add :+: Mul)#Plus)#Plus](13)
   //
-  type U[A] = Coproduct[Val, ({type C[x] = Coproduct[Add, Mul, x]})#C, A]
+//  type U[A] = Coproduct[Val, ({type C[x] = Coproduct[Add, Mul, x]})#C, A]
+  type U[A] = Coproduct[Val,  Coproduct[Add, Mul, ?], A]
 
 
   val addExample1: Expr[T] = sum[T](sum[T](valOf[T](30000), valOf[T](1330)), valOf[T](7))
