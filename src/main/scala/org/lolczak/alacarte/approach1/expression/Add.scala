@@ -16,11 +16,10 @@ object Add {
     override def evalAlgebra(expr: Add[Int])(implicit fun: Functor[Add]): Int = expr.x + expr.y
   }
 
-
   def sum[F[_]](x: Expr[F], y: Expr[F])(implicit ev: Add :<: F): Expr[F] = Expr.inject(Add(x,y))
 
   implicit class AddOps[F[_]](x: Expr[F])(implicit ev: Add :<: F) {
-    def +(y: Expr[F]) = sum[F](x,y)
+    def |+|(y: Expr[F]) = sum[F](x,y)
   }
 
 }
