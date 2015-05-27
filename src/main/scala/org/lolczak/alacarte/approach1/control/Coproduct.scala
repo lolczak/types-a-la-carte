@@ -35,6 +35,14 @@ object CoproductInstances {
     }
   }
 
+  //hack
+  implicit def coprodNestedRender[F[_], G[_], H[_]](implicit F0: Render[F], G0: Render[Coproduct[G, H, ?]]) = new Render[Coproduct[F, Coproduct[G, H, ?], ?]] {
+    override def render[I[_]](expr: Coproduct[F, Coproduct[G, H, ?], Expr[I]])(implicit I0: Render[I]): String = expr match {
+      case left: Inl[F, Coproduct[G, H, ?], Expr[I]] => F0.render(left.f)
+      case right: Inr[F, Coproduct[G, H, ?], Expr[I]] => G0.render(right.g)
+    }
+  }
+
 }
 
 

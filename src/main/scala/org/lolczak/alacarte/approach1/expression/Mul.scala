@@ -24,4 +24,9 @@ object Mul {
 
   }
 
+  implicit val mulRender = new Render[Mul] {
+    override def render[G[_]](expr: Mul[Expr[G]])(implicit G0: Render[G]): String =
+      "(" + Render.pretty(expr.x) + " * " + Render.pretty(expr.y) + ")"
+  }
+
 }
