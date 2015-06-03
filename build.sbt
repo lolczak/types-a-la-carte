@@ -16,5 +16,6 @@ libraryDependencies ++= Seq(
   "org.scalatest" %% "scalatest" % "2.2.2" % "test" withSources() withJavadoc(),
   "org.scalacheck" %% "scalacheck" % "1.11.6" % "test" withSources() withJavadoc(),
   "com.chuusai" %% "shapeless" % "2.1.0" withSources() withJavadoc(),
-  "org.scalaz" %% "scalaz-core" % "7.1.2" withSources() withJavadoc()
+  "org.scalaz" %% "scalaz-core" % "7.1.2" withSources() withJavadoc(),
+  "org.scalaz" %% "scalaz-effect" % "7.1.0" withSources() withJavadoc()
 )
