@@ -20,6 +20,17 @@ object Term {
 
   def inject[G[_], F[_], A](in: G[Term[F, A]])(implicit I0: G :<: F): Term[F, A] = Impure[F, A](I0.inj(in))
 
+  def run[F[_], A](expr: Term[F, A])(mem: Mem)(implicit F0: Run[F], F1: Functor[F]): (A, Mem) = {
+    val pure= (a:A) => (m: Mem) => (a, m)
+    val impure = (fa: F[Mem => (A, Mem)]) => F0.runAlgebra(fa)(_)
+    foldTerm[F, A, Mem => (A, Mem)](pure)(impure)(expr).apply(mem)
+  }
+
+  def foldTerm[F[_], A, B](pure: A => B)(imp: F[B] => B)(term: Term[F, A])(implicit F0: Functor[F]): B = term match {
+    case Pure(x) => pure(x)
+    case Impure(x) => imp(F0.map(x)(foldTerm(pure)(imp)))
+  }
+
 }
 
 object TermInstances {

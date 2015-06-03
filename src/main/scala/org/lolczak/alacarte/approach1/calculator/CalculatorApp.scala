@@ -20,6 +20,6 @@ object CalculatorApp extends App {
     _ <- incr[T](1)
   } yield m
 
-
+  println(Term.run(tick)(Mem(4)))
 
 }

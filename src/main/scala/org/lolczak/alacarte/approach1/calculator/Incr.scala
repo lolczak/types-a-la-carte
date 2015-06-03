@@ -4,7 +4,7 @@ import org.lolczak.alacarte.approach1.control.:<:
 
 import scalaz.Functor
 
-case class Incr[T](i: Int, t: T)
+case class Incr[T](k: Int, r: T)
 
 object Incr {
 
@@ -15,7 +15,11 @@ object Incr {
 object IncrInstances {
 
   implicit val incrFunctor = new Functor[Incr] {
-    override def map[A, B](fa: Incr[A])(f: (A) => B): Incr[B] = Incr(fa.i, f(fa.t))
+    override def map[A, B](fa: Incr[A])(f: (A) => B): Incr[B] = Incr(fa.k, f(fa.r))
+  }
+
+  implicit val incrRun = new Run[Incr] {
+    override def runAlgebra[A](expr: Incr[(Mem) => (A, Mem)])(mem: Mem): (A, Mem) = expr.r(Mem(mem.i + expr.k))
   }
 
 }
