@@ -1,5 +1,8 @@
 package org.lolczak.alacarte.approach1.io
 
+import org.lolczak.alacarte.approach1.calculator.{Pure, Term}
+import org.lolczak.alacarte.approach1.control._
+
 import scala.io.Source
 import scalaz.Functor
 import scalaz.effect.IO
@@ -10,7 +13,13 @@ case class ReadFile[A](path: FilePath, f: String => A) extends FileSystem[A]
 
 case class WriteFile[A](path: FilePath, content: String, a: A) extends FileSystem[A]
 
-object FileSystemInstances {
+object FileSystem extends FileSystemInstances {
+
+  def readFile[F[_]](path: FilePath)(implicit ev: FileSystem :<: F): Term[F, String] = Term.inject[FileSystem,F, String](ReadFile(path, Pure(_)))
+
+}
+
+trait FileSystemInstances {
 
   implicit val fsFunctor = new Functor[FileSystem] {
     override def map[A, B](fa: FileSystem[A])(f: (A) => B): FileSystem[B] = fa match {

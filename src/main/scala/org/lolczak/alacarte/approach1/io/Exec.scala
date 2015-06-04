@@ -15,7 +15,7 @@ trait Exec[F[_]] {
 
 }
 
-object Exec {
+object Exec extends ExecInstances {
 
   def exec[F[_], A](term: Term[F, A])(implicit F0: Exec[F]): IO[A] = {
     val pure = (a: A) => IO(a)
@@ -25,7 +25,7 @@ object Exec {
 
 }
 
-object ExecInstances {
+trait ExecInstances {
 
   implicit def coprodExec[F[_], G[_]](implicit F0: Exec[F], G0: Exec[G]) = new Exec[Coproduct[F, G, ?]] {
     implicit val F1 = F0.functor

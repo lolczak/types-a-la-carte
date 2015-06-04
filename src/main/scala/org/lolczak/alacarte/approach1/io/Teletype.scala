@@ -1,5 +1,8 @@
 package org.lolczak.alacarte.approach1.io
 
+import org.lolczak.alacarte.approach1.calculator.{Pure, Term}
+import org.lolczak.alacarte.approach1.control._
+
 import scalaz.Functor
 import scalaz.effect.IO
 
@@ -9,7 +12,13 @@ case class GetChar[A](f: Char => A) extends Teletype[A]
 
 case class PutChar[A](c: Char, a: A) extends Teletype[A]
 
-object TeletypeInstances {
+object Teletype extends TeletypeInstances {
+
+  def putChar[F[_]](char: Char)(implicit ev: Teletype :<: F): Term[F, Unit] = Term.inject[Teletype, F, Unit](PutChar(char, Pure()))
+
+}
+
+trait TeletypeInstances {
 
  implicit val teletypeFunctor = new Functor[Teletype] {
    override def map[A, B](fa: Teletype[A])(f: (A) => B): Teletype[B] = fa match {
