@@ -4,8 +4,8 @@ import org.lolczak.alacarte.approach1.calculator.Term
 import org.lolczak.alacarte.approach1.control._
 import Teletype._
 import FileSystem._
-import scalaz.std.AllInstances._
-
+import org.lolczak.alacarte.approach1.io.Exec.exec
+import scalaz.Scalaz._
 
 object IoApp extends App {
 
@@ -17,7 +17,7 @@ object IoApp extends App {
     _ <- Term.monad[T].traverse[Char, List, Unit](content.toList)(putChar[T](_))
   } yield size
 
-  val size = Exec.exec[T,Int](cat("build.sbt")).unsafePerformIO()
+  val size = exec(cat("build.sbt")).unsafePerformIO()
 
   println(s"size: $size")
 
