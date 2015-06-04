@@ -6,13 +6,13 @@ import scalaz.Functor
 
 case class Recall[T](r: Int => T)
 
-object Recall {
+object Recall extends RecallInstances {
 
   def recall[F[_]](implicit I0: Recall :<: F): Term[F, Int] = Term.inject[Recall, F, Int](Recall(Pure(_)))
 
 }
 
-object RecallInstances {
+trait RecallInstances {
 
   implicit val recallFunctor = new Functor[Recall] {
     override def map[A, B](fa: Recall[A])(f: (A) => B): Recall[B] = Recall(fa.r andThen f)
