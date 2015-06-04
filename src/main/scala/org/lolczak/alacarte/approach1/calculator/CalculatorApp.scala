@@ -3,7 +3,6 @@ package org.lolczak.alacarte.approach1.calculator
 import Incr._
 import Recall._
 import TermInstances._
-import org.lolczak.alacarte.approach1.control.InjectInstances._
 import org.lolczak.alacarte.approach1.control._
 import IncrInstances._
 import RecallInstances._

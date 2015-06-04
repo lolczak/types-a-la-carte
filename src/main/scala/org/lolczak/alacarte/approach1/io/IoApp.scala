@@ -5,7 +5,6 @@ import org.lolczak.alacarte.approach1.control._
 import ExecInstances._
 import TeletypeInstances._
 import FileSystemInstances._
-import org.lolczak.alacarte.approach1.control.InjectInstances._
 import scalaz.std.AllInstances._
 
 

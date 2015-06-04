@@ -1,6 +1,5 @@
 package org.lolczak.alacarte.approach1.expression
 
-import org.lolczak.alacarte.approach1.control.InjectInstances._
 import org.lolczak.alacarte.approach1.control._
 import org.lolczak.alacarte.approach1.expression.Add._
 import org.lolczak.alacarte.approach1.expression.Expr._
