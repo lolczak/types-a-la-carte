@@ -6,7 +6,6 @@ import ExecInstances._
 import TeletypeInstances._
 import FileSystemInstances._
 import org.lolczak.alacarte.approach1.control.InjectInstances._
-import org.lolczak.alacarte.approach1.control.CoproductInstances._
 import scalaz.std.AllInstances._
 
 
@@ -25,7 +24,7 @@ object IoApp extends App {
     _ <- TermInstances.monad[T].traverse[Char, List, Unit](content.toList)(putChar[T](_))
   } yield size
 
-  val size = Exec.exec[T,Int](cat("/Users/lolczak/.profile")).unsafePerformIO()
+  val size = Exec.exec[T,Int](cat("build.sbt")).unsafePerformIO()
 
   println(s"size: $size")
 

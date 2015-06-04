@@ -30,7 +30,6 @@ object ExecInstances {
   implicit def coprodExec[F[_], G[_]](implicit F0: Exec[F], G0: Exec[G]) = new Exec[Coproduct[F, G, ?]] {
     implicit val F1 = F0.functor
     implicit val G1 = G0.functor
-    import org.lolczak.alacarte.approach1.control.CoproductInstances._
 
     override def functor = implicitly[Functor[Coproduct[F, G, ?]]]
 
