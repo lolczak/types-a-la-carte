@@ -13,7 +13,7 @@ object Coproduct extends CoproductInstances
 
 trait CoproductInstances {
 
-  implicit def coFunctor[F[_], G[_]](implicit F0: Functor[F], G0: Functor[G]) = new Functor[({type C[A] = Coproduct[F,G,A]})#C] {
+  implicit def coFunctor[F[_], G[_]](implicit F0: Functor[F], G0: Functor[G]) = new Functor[Coproduct[F, G, ?]] {
     override def map[A, B](fa: Coproduct[F, G, A])(f: (A) => B): Coproduct[F, G, B] = fa match {
       case Inl(ff) => Inl[F,G,B](F0.map(ff)(f))
       case Inr(gg) => Inr[F,G,B](G0.map(gg)(f))
