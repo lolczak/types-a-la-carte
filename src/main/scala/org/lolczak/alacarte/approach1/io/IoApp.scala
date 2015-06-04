@@ -1,6 +1,6 @@
 package org.lolczak.alacarte.approach1.io
 
-import org.lolczak.alacarte.approach1.calculator.{TermInstances, Pure, Term}
+import org.lolczak.alacarte.approach1.calculator.{Pure, Term}
 import org.lolczak.alacarte.approach1.control._
 import ExecInstances._
 import TeletypeInstances._
@@ -20,7 +20,7 @@ object IoApp extends App {
   def cat(path: FilePath): Term[T, Int] = for {
     content <- readFile[T](path)
     size = content.length
-    _ <- TermInstances.monad[T].traverse[Char, List, Unit](content.toList)(putChar[T](_))
+    _ <- Term.monad[T].traverse[Char, List, Unit](content.toList)(putChar[T](_))
   } yield size
 
   val size = Exec.exec[T,Int](cat("build.sbt")).unsafePerformIO()
