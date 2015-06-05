@@ -1,4 +1,4 @@
-package org.lolczak.alacarte.approach1.control
+package org.lolczak.alacarte.paper.control
 
 trait Inject[F[_], G[_]] {
 

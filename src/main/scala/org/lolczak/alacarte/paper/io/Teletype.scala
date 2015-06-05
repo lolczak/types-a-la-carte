@@ -1,7 +1,7 @@
-package org.lolczak.alacarte.approach1.io
+package org.lolczak.alacarte.paper.io
 
-import org.lolczak.alacarte.approach1.calculator.{Pure, Term}
-import org.lolczak.alacarte.approach1.control._
+import org.lolczak.alacarte.paper.calculator.{Pure, Term}
+import org.lolczak.alacarte.paper.control._
 
 import scalaz.Functor
 import scalaz.effect.IO

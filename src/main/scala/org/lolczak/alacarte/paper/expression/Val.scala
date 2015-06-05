@@ -1,6 +1,6 @@
-package org.lolczak.alacarte.approach1.expression
+package org.lolczak.alacarte.paper.expression
 
-import org.lolczak.alacarte.approach1.control.:<:
+import org.lolczak.alacarte.paper.control.:<:
 
 import scalaz.Functor
 

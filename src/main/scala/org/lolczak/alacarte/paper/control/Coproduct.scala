@@ -1,6 +1,6 @@
-package org.lolczak.alacarte.approach1.control
+package org.lolczak.alacarte.paper.control
 
-import org.lolczak.alacarte.approach1.expression.{Expr, Render}
+import org.lolczak.alacarte.paper.expression.{Expr, Render}
 
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 import scalaz.Functor

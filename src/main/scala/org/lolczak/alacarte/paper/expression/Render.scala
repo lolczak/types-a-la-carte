@@ -1,4 +1,4 @@
-package org.lolczak.alacarte.approach1.expression
+package org.lolczak.alacarte.paper.expression
 
 trait Render[F[_]] {
 

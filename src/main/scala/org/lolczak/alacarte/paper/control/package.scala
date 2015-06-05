@@ -1,4 +1,4 @@
-package org.lolczak.alacarte.approach1
+package org.lolczak.alacarte.paper
 
 package object control {
 

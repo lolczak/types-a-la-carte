@@ -1,9 +1,9 @@
-package org.lolczak.alacarte.approach1.calculator
+package org.lolczak.alacarte.paper.calculator
 
 import Incr._
 import Recall._
-import org.lolczak.alacarte.approach1.calculator.Run.run
-import org.lolczak.alacarte.approach1.control._
+import org.lolczak.alacarte.paper.calculator.Run.run
+import org.lolczak.alacarte.paper.control._
 
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 

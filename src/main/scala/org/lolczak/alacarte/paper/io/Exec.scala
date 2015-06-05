@@ -1,8 +1,8 @@
-package org.lolczak.alacarte.approach1.io
+package org.lolczak.alacarte.paper.io
 
 
-import org.lolczak.alacarte.approach1.calculator.Term
-import org.lolczak.alacarte.approach1.control.{Inr, Inl, Coproduct}
+import org.lolczak.alacarte.paper.calculator.Term
+import org.lolczak.alacarte.paper.control.{Inr, Inl, Coproduct}
 
 import scalaz.Functor
 import scalaz.effect.IO

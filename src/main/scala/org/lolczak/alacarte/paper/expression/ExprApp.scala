@@ -1,10 +1,10 @@
-package org.lolczak.alacarte.approach1.expression
+package org.lolczak.alacarte.paper.expression
 
-import org.lolczak.alacarte.approach1.control._
-import org.lolczak.alacarte.approach1.expression.Add._
-import org.lolczak.alacarte.approach1.expression.Expr._
-import org.lolczak.alacarte.approach1.expression.Mul._
-import org.lolczak.alacarte.approach1.expression.Val._
+import org.lolczak.alacarte.paper.control._
+import org.lolczak.alacarte.paper.expression.Add._
+import org.lolczak.alacarte.paper.expression.Expr._
+import org.lolczak.alacarte.paper.expression.Mul._
+import org.lolczak.alacarte.paper.expression.Val._
 import Render._
 
 import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}

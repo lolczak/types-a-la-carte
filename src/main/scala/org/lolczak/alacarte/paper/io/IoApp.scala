@@ -1,10 +1,10 @@
-package org.lolczak.alacarte.approach1.io
+package org.lolczak.alacarte.paper.io
 
-import org.lolczak.alacarte.approach1.calculator.Term
-import org.lolczak.alacarte.approach1.control._
+import org.lolczak.alacarte.paper.calculator.Term
+import org.lolczak.alacarte.paper.control._
 import Teletype._
 import FileSystem._
-import org.lolczak.alacarte.approach1.io.Exec.exec
+import org.lolczak.alacarte.paper.io.Exec.exec
 import scalaz.Scalaz._
 
 object IoApp extends App {
