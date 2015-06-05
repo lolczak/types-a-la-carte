@@ -19,7 +19,7 @@ trait IncrInstances {
   }
 
   implicit val incrRun = new Run[Incr] {
-    override def runAlgebra[A](expr: Incr[(Mem) => (A, Mem)])(mem: Mem): (A, Mem) = expr.r(Mem(mem.i + expr.k))
+    override def runAlgebra[A](incr: Incr[(Mem) => (A, Mem)])(mem: Mem): (A, Mem) = incr.r(Mem(mem.i + incr.k))
   }
 
 }

@@ -19,7 +19,7 @@ trait RecallInstances {
   }
 
   implicit val recallRun = new Run[Recall] {
-    override def runAlgebra[A](expr: Recall[(Mem) => (A, Mem)])(mem: Mem): (A, Mem) = expr.r(mem.i)(mem)
+    override def runAlgebra[A](recall: Recall[(Mem) => (A, Mem)])(mem: Mem): (A, Mem) = recall.r(mem.i)(mem)
   }
 
 }
