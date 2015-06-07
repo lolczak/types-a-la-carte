@@ -15,7 +15,7 @@ case class WriteFile[A](path: FilePath, content: String, a: A) extends FileSyste
 
 object FileSystem extends FileSystemInstances {
 
-  def readFile[F[_]](path: FilePath)(implicit ev: FileSystem :<: F): Term[F, String] = Term.inject[FileSystem,F, String](ReadFile(path, Pure(_)))
+  def readFile[F[_]](path: FilePath)(implicit ev: FileSystem :<: F): Term[F, String] = Term.inject[FileSystem, F, String](ReadFile(path, Pure(_)))
 
 }
 

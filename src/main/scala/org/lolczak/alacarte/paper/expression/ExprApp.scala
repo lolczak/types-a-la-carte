@@ -11,9 +11,7 @@ import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 
 object ExprApp extends App {
 
-  //  type T[A] = (Val :+: Add :+: CNil)#Plus[A]
-
-  type T[A] = Coproduct[Val, Add, A]
+  type T[A] =  (Val :+: Add )#Plus[A]
 
   //  val addExample= Expr[T](Inr[Val, Add, Int](
   //    Add(Expr[T](Inl[Val, Add, Int](Val(118))), Expr[T](Inl[Val, Add, Int](Val(1219))))
@@ -25,7 +23,8 @@ object ExprApp extends App {
   //  val x = valOf[(Val :+: (Add :+: Mul)#Plus)#Plus](13)
   //
 //  type U[A] = Coproduct[Val, ({type C[x] = Coproduct[Add, Mul, x]})#C, A]
-  type U[A] = Coproduct[Val,  Coproduct[Add, Mul, ?], A]
+//  type U[A] = Coproduct[Val,  Coproduct[Add, Mul, ?], A]
+  type U[A] = (Val :++: Add :+: Mul)#Plus[A]
 
 
   val addExample1: Expr[T] = sum[T](sum[T](valOf[T](30000), valOf[T](1330)), valOf[T](7))
