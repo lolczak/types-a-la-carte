@@ -11,7 +11,7 @@ import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
 
 object ExprApp extends App {
 
-  type T[A] =  (Val :+: Add )#Plus[A]
+  type T[A] =  (Val :+: Add)#Plus[A]
 
   //  val addExample= Expr[T](Inr[Val, Add, Int](
   //    Add(Expr[T](Inl[Val, Add, Int](Val(118))), Expr[T](Inl[Val, Add, Int](Val(1219))))
