@@ -2,7 +2,7 @@
 
 module Coproduct where
 
-import Data.Functor
+import Data.Functor()
 
 data (f :+: g) e = Inl (f e) | Inr (g e)
 

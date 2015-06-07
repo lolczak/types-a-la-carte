@@ -2,7 +2,7 @@
 
 module Expr where
 
-import Data.Functor
+import Data.Functor()
 import Coproduct
 
 data Expr f = In( f (Expr f))
