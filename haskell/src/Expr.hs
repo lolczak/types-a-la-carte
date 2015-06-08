@@ -1,4 +1,5 @@
 {-# LANGUAGE TypeOperators #-}
+{-# LANGUAGE FlexibleContexts #-}
 
 module Expr where
 
@@ -35,3 +36,13 @@ instance (Eval f, Eval g) => Eval (f :+: g) where
 
 eval :: Eval f => Expr f -> Int
 eval expr = foldExpr evalAlgebra expr
+
+inject :: (g :<: f) => g (Expr f) -> Expr f
+inject = In . inj
+
+val :: (Val :<: f) => Int -> Expr f
+val x = inject (Val x)
+
+infixl 6 |+|
+(|+|) :: (Add :<: f) => Expr f -> Expr f -> Expr f
+x |+| y = inject (Add x y)
