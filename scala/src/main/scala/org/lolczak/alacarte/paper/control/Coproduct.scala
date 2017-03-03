@@ -2,7 +2,7 @@ package org.lolczak.alacarte.paper.control
 
 import org.lolczak.alacarte.paper.expression.{Expr, Render}
 
-import scala.languageFeature.{existentials, higherKinds, reflectiveCalls}
+import scala.language.{existentials, higherKinds, reflectiveCalls}
 import scalaz.Functor
 
 sealed trait Coproduct[F[_], G[_], A]
